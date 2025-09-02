@@ -1,5 +1,6 @@
 import Movie from "../models/movie.model.js"
 
+// lisiting functionality
 export const movieIndex = async (req,res)=> {
 
     try{
@@ -10,7 +11,7 @@ export const movieIndex = async (req,res)=> {
     }
 };
 
-
+// creating functionality
 export const movieCreate = async(req,res)=> {
 
     console.log(req.body);
@@ -68,11 +69,19 @@ export const movieupdate = async (req, res) => {
 };
 
 
-
-
 // delete functionality
-export const moviedelete = (req, res)=> {
-    res.json({ msg: "movie deleted successfully"})
+export const moviedelete = async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+
+    if (!movie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+    res.json({ msg: "Movie deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
+
 
 

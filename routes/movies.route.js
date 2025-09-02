@@ -18,7 +18,7 @@ router.get("/:id", movieDetail)
 router.put('/:id',movieupdate)
 
 // for deleting old record
-router.delete('/', moviedelete)
+router.delete('/:id', moviedelete)
 
 
 export default router;
