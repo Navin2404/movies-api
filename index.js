@@ -6,7 +6,7 @@ const app = express()
 const PORT = 6969;
 
 // connect db
-connectDB
+connectDB();
 
 // middleware
 app.use(express.json());
